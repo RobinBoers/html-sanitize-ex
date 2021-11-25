@@ -2,9 +2,9 @@
 
 `html_sanitize_ex` provides a fast and straightforward HTML Sanitizer written in Elixir which lets you include HTML authored by third-parties in your web application while protecting against XSS.
 
+This is a fork that adds the `no_image` mode, which allows basic HTML, but strips all the images. I used this in Nindo, because images would be a big performance hit when loading pages and causes problems when the image paths were relative.
+
 It is the first Hex package to come out of the [elixirstatus.com](http://elixirstatus.com) project, where it will be used to sanitize user announcements from the Elixir community.
-
-
 
 ## What can it do?
 
@@ -16,7 +16,7 @@ Otherwise `html_sanitize_ex` is a full-featured HTML sanitizer.
 
 ## Installation
 
-Add html_sanitize_ex as a dependency in your `mix.exs` file.
+Add `html_sanitize_ex` as a dependency in your `mix.exs` file.
 
 ```elixir
 defp deps do
@@ -28,31 +28,36 @@ After adding you are done, run `mix deps.get` in your shell to fetch the new dep
 
 The only dependency of `html_sanitize_ex` is `mochiweb` which is used to parse HTML.
 
-
 ## Usage
 
 It can strip all tags from the given string:
 
-    text = "<a href=\"javascript:alert('XSS');\">text here</a>"
-    HtmlSanitizeEx.strip_tags(text)
-    # => "text here"
+```elixir
+text = "<a href=\"javascript:alert('XSS');\">text here</a>"
+HtmlSanitizeEx.strip_tags(text)
+# => "text here"
+```
 
 Or allow certain basic HTML elements to remain:
 
-    text = "<h1>Hello <script>World!</script></h1>"
-    HtmlSanitizeEx.basic_html(text)
-    # => "<h1>Hello World!</h1>"
+```elixir
+text = "<h1>Hello <script>World!</script></h1>"
+HtmlSanitizeEx.basic_html(text)
+# => "<h1>Hello World!</h1>"
+```
 
 The following scrubbing options exist:
 
-    HtmlSanitizeEx.noscrub(html)
-    HtmlSanitizeEx.basic_html(html)
-    HtmlSanitizeEx.html5(html)
-    HtmlSanitizeEx.markdown_html(html)
-    HtmlSanitizeEx.strip_tags(html)
+```elixir
+HtmlSanitizeEx.noscrub(html)
+HtmlSanitizeEx.basic_html(html)
+HtmlSanitizeEx.no_images(html)
+HtmlSanitizeEx.html5(html)
+HtmlSanitizeEx.markdown_html(html)
+HtmlSanitizeEx.strip_tags(html)
+```
 
 **TODO: write more comprehensive usage description**
-
 
 ## Contributing
 
@@ -62,14 +67,9 @@ The following scrubbing options exist:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-
-
 ## Author
 
 René Föhring (@rrrene)
-
-
-
 
 ## License
 

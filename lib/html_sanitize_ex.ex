@@ -9,6 +9,10 @@ defmodule HtmlSanitizeEx do
     html |> Scrubber.scrub(Scrubber.BasicHTML)
   end
 
+  def no_images(html) do
+    html |> Scrubber.scrub(Scrubber.NoImages)
+  end
+
   def html5(html) do
     html |> Scrubber.scrub(Scrubber.HTML5)
   end
