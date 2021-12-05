@@ -36,6 +36,7 @@ defmodule HtmlSanitizeEx.Scrubber.NoImages do
   Meta.allow_tag_with_these_attributes("p", [])
   Meta.allow_tag_with_these_attributes("pre", [])
   Meta.allow_tag_with_these_attributes("span", [])
+  Meta.allow_tag_with_these_attributes("div", [])
   Meta.allow_tag_with_these_attributes("strong", [])
   Meta.allow_tag_with_these_attributes("table", [])
   Meta.allow_tag_with_these_attributes("tbody", [])
