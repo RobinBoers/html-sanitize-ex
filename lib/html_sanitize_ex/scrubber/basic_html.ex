@@ -58,6 +58,8 @@ defmodule HtmlSanitizeEx.Scrubber.BasicHTML do
   Meta.allow_tag_with_these_attributes("tr", [])
   Meta.allow_tag_with_these_attributes("u", [])
   Meta.allow_tag_with_these_attributes("ul", [])
+  Meta.allow_tag_with_these_attributes("sup", [])
+  Meta.allow_tag_with_these_attributes("sub", [])
 
   Meta.strip_everything_not_covered()
 end
